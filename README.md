@@ -1,4 +1,4 @@
-# Japanese 
+# Japanese [![Build Status](https://travis-ci.org/ZaruWright/Japanese.svg?branch=master)](https://travis-ci.org/ZaruWright/Japanese)
 Tools to learn japanese.
 
 ## Dependencies
