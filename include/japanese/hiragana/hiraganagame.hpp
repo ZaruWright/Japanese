@@ -44,7 +44,15 @@ private:
     * param ps1: string to decorate the output
     * param hiragana: hiragana character group
     */
-    void game(std::string ps1, Hiragana hiragana) const;
+    void romajiGame(std::string ps1, Hiragana hiragana) const;
+
+    /**
+    * Starts the writing game. This game only give a random romaji,
+    * thus you can practise the caligraphy on your notebook.
+    * param ps1: string to decorate the output
+    * param hiragana: hiragana character group
+    */
+    void hiraganaWritingGame(std::string ps1, Hiragana hiragana) const;
 
     /**
     * Change the number of questions that appear on the game.
@@ -53,13 +61,21 @@ private:
 
     /**
     * Logic of the main hiragana menu.
+    * param romaji: Select the option that you choose. True means 
+    * that you learn hiragana with romaji with the keyboard. False
+    * only it will gave you random romaji syllables, thus you can 
+    * practise on your notebook.
     */
-    void hiraganaMenu();
+    void hiraganaMenu(bool romaji);
 
     /**
     * Logic of the main advanced hiragana menu.
+    * param romaji: Select the option that you choose. True means 
+    * that you learn hiragana with romaji with the keyboard. False
+    * only it will gave you random romaji syllables, thus you can 
+    * practise on your notebook.
     */
-    void advancedHiraganaMenu();
+    void advancedHiraganaMenu(bool romaji);
 
     /**
     * Return a hiragana character group that contains all hiraganas.

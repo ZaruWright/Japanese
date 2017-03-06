@@ -7,7 +7,7 @@ namespace hiragana {
 
     HiraganaGame::HiraganaGame() : _numberOfTimes(10) {}
 
-    void HiraganaGame::game(std::string ps1, Hiragana hiragana) const
+    void HiraganaGame::romajiGame(std::string ps1, Hiragana hiragana) const
     {
         std::string answer;
         std::string previous("");
@@ -39,6 +39,33 @@ namespace hiragana {
         }
     }
 
+    void HiraganaGame::hiraganaWritingGame(std::string ps1, Hiragana hiragana) const
+    {
+        std::string answer;
+        std::string previous("");
+        std::pair<std::string, std::string> pair;
+
+        for (unsigned int i = 0; i < _numberOfTimes; ++i)
+        {
+            // Not allow two same questions followed.
+            do
+            {
+                std::srand(std::time(0)); // use current time as seed for random generator
+                pair = hiragana.getCharacter(std::rand()%hiragana.getNumberOfCharacters()); 
+            } while(pair.first == previous);
+            previous = pair.first;
+
+            // Show output a get user input.
+            std::cout << ps1 << std::endl << ps1 << " Romaji: " << pair.first;
+            std::getline(std::cin, answer);
+
+            // Go out the app if user input is 0.
+            if (answer == "0") break;
+
+            std::cout << ps1 << " The answer is: " << pair.second << std::endl;
+        }
+    }
+
     void HiraganaGame::play()
     {
         std::string answer;
@@ -51,12 +78,13 @@ namespace hiragana {
             std::cout << mainMenuString();
             std::cin >> answer;
 
-            if (answer == "1") hiraganaMenu();
+            if (answer == "1") hiraganaMenu(true);
+            else if (answer == "2") hiraganaMenu(false);
             
         } while (answer != "0");
     }
 
-    void HiraganaGame::hiraganaMenu()
+    void HiraganaGame::hiraganaMenu(bool romaji)
     {
         std::string answer;
         Hiragana hiragana;
@@ -91,12 +119,17 @@ namespace hiragana {
                 if (token == "3") hiragana += getImpureSoundsCharacters();
                 if (token == "4") hiragana += getDiphthongsSoundsCharacters();
                 if (token == "5") changeNumberOfQuestions(std::string("##########"));
-                if (token == "6") advancedHiraganaMenu();  
+                if (token == "6") advancedHiraganaMenu(romaji);  
             }
 
             // Call hiragana game
             if (hiragana.getNumberOfCharacters() > 0)
-                game(std::string("##########"),hiragana);
+            {
+                if (romaji)
+                    romajiGame(std::string("##########"),hiragana);
+                else
+                    hiraganaWritingGame(std::string("##########"),hiragana);
+            }
 
         } while (!quit);   
     }
@@ -115,7 +148,7 @@ namespace hiragana {
         _numberOfTimes = std::atoi(answer.c_str());
     }
 
-    void HiraganaGame::advancedHiraganaMenu()
+    void HiraganaGame::advancedHiraganaMenu(bool romaji)
     {
         std::string answer;
         bool quit;
@@ -183,7 +216,12 @@ namespace hiragana {
 
             // Call hirgana game
             if (hiragana.getNumberOfCharacters() > 0)
-                game(std::string("#############"), hiragana);
+            {
+                if (romaji)
+                    romajiGame(std::string("#############"), hiragana);
+                else
+                    hiraganaWritingGame(std::string("#############"), hiragana);
+            }
 
         } while (!quit); 
     }
@@ -288,6 +326,7 @@ namespace hiragana {
         "####\n"
         "#### 0. Exit from game.\n"
         "#### 1. Learn hiraganas with romaji.\n"
+        "#### 2. Learn hiraganas writing on your notebook.\n"
         "####\n"
         "####\n"
         "#### > "
