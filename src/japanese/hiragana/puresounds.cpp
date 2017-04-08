@@ -63,7 +63,7 @@ namespace sounds {
                                                                                std::pair<std::string, std::string>("ro", "ろ")}) {}
 
     wSound::wSound() : PureSounds(std::unordered_map<std::string, std::string>{std::pair<std::string, std::string>("wa", "わ"),
-                                                                               std::pair<std::string, std::string>("(w)o", "を")}) {}
+                                                                               std::pair<std::string, std::string>("wo", "を")}) {}
 } // namespace sounds
 } // namespace hiragana
 } // namespace japanese

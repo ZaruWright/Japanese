@@ -1,1 +1,2 @@
 add_subdirectory(hiragana)
+add_subdirectory(katakana)

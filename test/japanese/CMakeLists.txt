@@ -1,1 +1,1 @@
-add_subdirectory(hiragana)
+add_subdirectory(learnsyllabary)

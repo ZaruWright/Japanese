@@ -1,4 +1,4 @@
-add_library(japanese-hiragana hiragana.cpp puresounds.cpp impuresounds.cpp diphthongs.cpp hiraganagame.cpp)
+add_library(japanese-hiragana hiragana.cpp puresounds.cpp impuresounds.cpp diphthongs.cpp)
 
 target_include_directories(japanese-hiragana PUBLIC "${CMAKE_SOURCE_DIR}/include")
 
